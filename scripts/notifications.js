@@ -1,5 +1,3 @@
-// Solicitar permiso para notificaciones
-// Solicitar permiso para notificaciones
 Notification.requestPermission().then(permission => {
     if (permission === 'granted') {
       console.log('Permiso para notificaciones concedido');
