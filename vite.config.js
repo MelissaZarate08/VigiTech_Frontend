@@ -10,6 +10,7 @@ export default defineConfig({
     },
   },
   server: {
-    port: 8080, // Puerto del servidor
+    port: 4200, // Puerto del servidor
+    open: '/home.html'
   },
 });

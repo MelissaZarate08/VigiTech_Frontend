@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VigiTech - Dashboard</title>
+  <link rel="stylesheet" href="./styles/dashboard.css" />
+  <!-- Librería para gráficas (Chart.js) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container-dash">
+    <header>
+      <div class="header-left">
+        <h1>VigiTech</h1>
+        <div class="user-info">
+          <img src="./assets/user-icon.png" alt="Usuario" />
+          <span id="user-name">Usuario</span>
+        </div>
+      </div>
+      <div class="header-center">
+        <button id="btn-config" class="mod-btn">Configuración de sensores</button>
+        <span class="divider">|</span>
+        <button id="btn-emergency" class="mod-btn">Números de emergencia</button>
+      </div>
+      <div class="header-right">
+        <button id="btn-logout" class="logout-btn">Cerrar Sesión</button>
+      </div>
+    </header>
+
+    <!-- Interruptor para encender/apagar el sistema completo -->
+    <div class="system-toggle">
+      <label class="switch">
+        <input type="checkbox" id="system-switch" checked>
+        <span class="slider"></span>
+      </label>
+      <span id="system-status-label">Sistema Activado</span>
+    </div>
+
+    <main class="dashboard-content">
+      <!-- Fila Superior: Datos y Cámara -->
+      <div class="top-row">
+        <!-- Panel Izquierdo: Datos en Tiempo Real -->
+        <aside class="sensor-data">
+          <h2>Datos en Tiempo Real</h2>
+          <div class="sensor-grid">
+            <div class="sensor-box">
+              <h3>Puerta</h3>
+              <p id="door-status">-</p>
+            </div>
+            <div class="sensor-box">
+              <h3>Luz</h3>
+              <p id="light-status">-</p>
+            </div>
+            <div class="sensor-box">
+              <h3>Movimiento</h3>
+              <p id="motion-status">-</p>
+            </div>
+            <div class="sensor-box">
+              <h3>Humo</h3>
+              <p id="smoke-status">-</p>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Panel Derecho: Cámara en Vivo -->
+        <section class="camera">
+          <h2>Cámara en Vivo</h2>
+          <img src="http://TU_ESP32_CAM_IP/stream" alt="Cámara en Vivo"/>
+        </section>
+      </div>
+
+      <!-- Fila Inferior: Monitoreo -->
+      <section class="monitoring">
+        <h2>Monitoreo de Sensores</h2>
+        <!-- Botón para alternar entre vista de Gráficas y Tabla -->
+        <div class="toggle-view">
+          <button id="btn-view-charts" class="view-btn active">Gráficas</button>
+          <button id="btn-view-table" class="view-btn">Tabla</button>
+        </div>
+        <!-- Contenedor de Gráficas -->
+        <div id="charts-container" class="charts-grid">
+          <div class="grid">
+            <div class="chart-box">
+              <h3>Puerta</h3>
+              <canvas id="doorChart"></canvas>
+            </div>
+            <div class="chart-box">
+              <h3>Luz</h3>
+              <canvas id="lightChart"></canvas>
+            </div>
+            <div class="chart-box">
+              <h3>Movimiento</h3>
+              <canvas id="motionChart"></canvas>
+            </div>
+            <div class="chart-box">
+              <h3>Humo</h3>
+              <canvas id="smokeChart"></canvas>
+            </div>
+          </div>
+        </div>
+        <!-- Contenedor de Tabla (inicialmente oculto) -->
+        <div id="table-container" class="table-grid" style="display:none;">
+          <table>
+            <thead>
+              <tr>
+                <th>Sensor</th>
+                <th>Estado</th>
+                <th>Valor</th>
+                <th>Hora</th>
+              </tr>
+            </thead>
+            <tbody id="monitoring-table-body">
+              <!-- Se irán agregando filas dinámicamente -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 VigiTech. Todos los derechos reservados.</p>
+    </footer>
+  </div>
+
+  <!-- Modal Configuración de Sensores -->
+  <div class="modal" id="modal-config">
+    <div class="modal-content">
+      <span class="close" id="close-config">&times;</span>
+      <h2>Configuración de Sensores</h2>
+      <!-- Cuadrícula 2x2 para la configuración individual -->
+      <div class="sensor-grid-config">
+        <div class="sensor-config-card">
+          <img src="./assets/images/puerta-abierta.png" alt="Puerta">
+          <h3>Puerta</h3>
+          <label class="switch">
+            <input type="checkbox" id="chk-door" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="sensor-config-card">
+          <img src="./assets/images/calle-de-la-lampara.png" alt="Luz">
+          <h3>Luz</h3>
+          <label class="switch">
+            <input type="checkbox" id="chk-light" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="sensor-config-card">
+          <img src="./assets/images/usuario-corriendo-rapido.png" alt="Movimiento">
+          <h3>Movimiento</h3>
+          <label class="switch">
+            <input type="checkbox" id="chk-motion" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="sensor-config-card">
+          <img src="./assets/images/fumar.png" alt="Humo">
+          <h3>Humo</h3>
+          <label class="switch">
+            <input type="checkbox" id="chk-smoke" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+      <button id="save-config">Guardar</button>
+    </div>
+  </div>
+
+  <!-- Modal Números de Emergencia -->
+<div class="modal" id="modal-emergency">
+  <div class="modal-content emergency-modal">
+    <span class="close" id="close-emergency">&times;</span>
+    <h2>Contactos de Emergencia</h2>
+    <div class="emergency-cards">
+      <div class="emergency-card">
+        <img src="./assets/images/policia-del-usuario.png" alt="Policía">
+        <h3>Policía</h3>
+        <p>911</p>
+      </div>
+      <div class="emergency-card">
+        <img src="./assets/images/extintor-de-incendios (1).png" alt="Bomberos">
+        <h3>Bomberos</h3>
+        <p>080</p>
+      </div>
+      <div class="emergency-card">
+        <img src="./assets/images/farmacia.png" alt="Cruz Roja">
+        <h3>Cruz Roja</h3>
+        <p>065</p>
+      </div>
+      <!-- Puedes agregar más contactos si lo deseas -->
+    </div>
+  </div>
+</div>
+
+  <script type="module" src="./src/scripts/dashboard.js"></script>
+</body>
+</html>

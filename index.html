@@ -1,40 +1,40 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VigiTech</title>
-    <link rel="stylesheet" href="styles/styles.css">
-    <link rel="icon" href="data:,">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VigiTech</title>
+  <link rel="stylesheet" href="./styles/styles.css" />
+  <link rel="icon" href="data:," />
 </head>
 <body>
-    <div class="container">
-        <h1>VigiTech</h1>
-        <div class="sensors">
-            <div class="sensor" id="light">
-                <h2>Luz</h2>
-                <p>Estado: <span id="light-status">Monitoreando...</span></p>
-            </div>
-            <div class="sensor" id="motion">
-                <h2>Movimiento</h2>
-                <p>Estado: <span id="motion-status">Monitoreando...</span></p>
-            </div>
-            <div class="sensor" id="door">
-                <h2>Puerta</h2>
-                <p>Estado: <span id="door-status">Monitoreando...</span></p>
-            </div>
-            <div class="sensor" id="smoke">
-                <h2>Humo</h2>
-                <p>Estado: <span id="smoke-status">Monitoreando...</span></p>
-            </div>
-        </div>
-        <div class="camera">
-            <h2>Cámara en Vivo</h2>
-            <img src="http://TU_ESP32_CAM_IP/stream" alt="Cámara en Vivo">
-        </div>
+  <div class="container">
+    <h1>VigiTech</h1>
+    <div class="sensors">
+      <div class="sensor" id="light">
+        <h2>Luz</h2>
+        <p>Estado: <span id="light-status">Monitoreando...</span></p>
+      </div>
+      <div class="sensor" id="motion">
+        <h2>Movimiento</h2>
+        <p>Estado: <span id="motion-status">Monitoreando...</span></p>
+      </div>
+      <div class="sensor" id="door">
+        <h2>Puerta</h2>
+        <p>Estado: <span id="door-status">Monitoreando...</span></p>
+      </div>
+      <div class="sensor" id="smoke">
+        <h2>Humo</h2>
+        <p>Estado: <span id="smoke-status">Monitoreando...</span></p>
+      </div>
     </div>
-    <script type="module" src="scripts/firebase.js"></script>
-    <script type="module" src="scripts/notifications.js"></script>
-    <script type="module" src="scripts/sensors.js"></script>
+    <div class="camera">
+      <h2>Cámara en Vivo</h2>
+      <img src="http://192.168.2.192" alt="Cámara en Vivo" />
+    </div>
+  </div>
+  
+  <!-- Punto de entrada principal -->
+  <script type="module" src="./main.js"></script>
 </body>
 </html>

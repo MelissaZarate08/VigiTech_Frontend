@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VigiTech - Iniciar Sesión</title>
+  <link rel="stylesheet" href="./styles/login.css">
+</head>
+<body>
+  <div class="login-container">
+    <h1>Iniciar Sesión</h1>
+    <form id="login-form">
+      <label for="login-email">Correo</label>
+      <input type="email" id="login-email" placeholder="Tu correo electrónico" required>
+
+      <label for="login-password">Contraseña</label>
+      <input type="password" id="login-password" placeholder="Tu contraseña" required>
+
+      <button type="submit">Ingresar</button>
+    </form>
+    <p>¿No tienes cuenta? <a href="./register.html">Regístrate aquí</a></p>
+  </div>
+
+  <script type="module" src="./src/scripts/login.js"></script>
+</body>
+</html>

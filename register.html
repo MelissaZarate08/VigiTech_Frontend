@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VigiTech - Registro</title>
+  <link rel="stylesheet" href="./styles/register.css">
+</head>
+<body>
+  <div class="register-container">
+    <h1>Crear Cuenta</h1>
+    <form id="register-form">
+      <label for="register-name">Nombre</label>
+      <input type="text" id="register-name" placeholder="Tu nombre completo" required>
+
+      <label for="register-email">Correo</label>
+      <input type="email" id="register-email" placeholder="Tu correo electrónico" required>
+
+      <label for="register-password">Contraseña</label>
+      <input type="password" id="register-password" placeholder="Crea una contraseña" required>
+
+      <label for="register-confirm-password">Confirmar Contraseña</label>
+      <input type="password" id="register-confirm-password" placeholder="Repite tu contraseña" required>
+
+      <button type="submit">Registrarse</button>
+    </form>
+    <p>¿Ya tienes cuenta? <a href="./login.html">Inicia sesión aquí</a></p>
+  </div>
+
+  <script type="module" src="./src/scripts/register.js"></script>
+</body>
+</html>

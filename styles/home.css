@@ -1,0 +1,136 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #121212;
+  color: #fff;
+}
+
+/* Header */
+header {
+  width: 80%; /* Ajusta el ancho para que no ocupe todo el espacio */
+  margin: 0 auto; /* Centra el elemento */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: #111111;
+  border-bottom: 2px solid #34a853;
+}
+
+
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #00e676;
+}
+
+nav button {
+  background: #00e676;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+nav button:hover {
+  transform: scale(1.05);
+}
+
+/* Contenido principal */
+.home-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  height: auto; /* Permite que el contenido crezca dinámicamente */
+}
+
+
+.text-section {
+  padding: 2rem;
+  background: linear-gradient(135deg, #1f1f1f, #222);
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+}
+
+.text-section:hover {
+  transform: scale(1.05); /* Pequeño efecto de hover para dinamismo */
+}
+
+.text-section h1 {
+  color: #34a853;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.text-section p {
+  line-height: 1.6;
+  color: #dcdcdc;
+}
+
+.image-section img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.image-section img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+}
+
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #101010;
+  border-top: 2px solid #34a853;
+  width: 80%; /* Ajusta el ancho para que no ocupe todo el espacio */
+  margin: 0 auto; /* Centra el elemento */
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.social-links img {
+  width: 30px; /* Ajusta el tamaño según sea necesario */
+  height: 30px; /* Mantén proporciones cuadradas */
+  margin: 0 10px; /* Espaciado entre los iconos */
+}
+
+.home-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  padding: 2rem;
+}
+
+.text-section, .image-section {
+  width: 30%;
+}
+
+.responsive-image {
+  width: 50%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
