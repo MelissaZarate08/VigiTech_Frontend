@@ -1,9 +1,9 @@
 // src/adapters/controllers/userController.js
 import { getFirebaseToken } from "../../infraestructure/services/firebaseService.js";
 
-export async function handleRegister(name, email, password) {
+export async function handleRegister(name, email, password, role) {
   try {
-    console.log("Registrando con:", name, email, password);
+    console.log("Registrando con:", name, email, password, role);
 
     // Obtén el token de notificaciones de Firebase
     const firebaseToken = await getFirebaseToken();
@@ -17,6 +17,7 @@ export async function handleRegister(name, email, password) {
         email,
         password,
         firebaseToken: firebaseToken || '', // Envía una cadena vacía si el token es null
+        role, // Enviamos el rol
       }),
     });
 
@@ -40,38 +41,43 @@ export async function handleRegister(name, email, password) {
 
 
 // src/adapters/controllers/userController.js
-export async function handleLogin(email, password) {
+// src/adapters/controllers/userController.js
+async function handleLogin(email, password) {
   try {
-    console.log("Iniciando sesión con:", email, password);
+      const response = await fetch("http://192.168.2.187:8080/api/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+      });
 
-    // Obtén el token de notificaciones de Firebase
-    const firebaseToken = await getFirebaseToken();
-    
-    const response = await fetch("http://192.168.2.187:8080/api/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email,
-        password,
-        firebaseToken, // Envía el token aquí si también se necesita
-      }),
-    });
+      const data = await response.json();
+      console.log("Datos recibidos:", data); // Verifica que el objeto `data` contiene `isActive`
 
-    const data = await response.json();
+      if (data.success) {
+          // Verificar si el usuario está activo
+          if (!data.isActive) {
+              // Si no está activo, mostrar un mensaje y redirigir
+              alert("Tu cuenta está desactivada. No puedes acceder.");
+              window.location.href = "./login.html"; // Redirige de nuevo al login
+              return; // Detener la ejecución si el usuario está desactivado
+          }
 
-    if (response.ok && data.success) {
-      // Guardar datos del usuario en localStorage
-      localStorage.setItem("vigitechUserName", data.userName);
-      localStorage.setItem("vigitechToken", data.token); // Si el backend devuelve un token
+          // Si el usuario está activo, guarda los datos y redirige según el rol
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("role", data.role); // Guarda el rol en localStorage
 
-      // Redirigir al dashboard
-      window.location.href = "./dashboard.html";
-    } else {
-      alert("Error en login: " + (data.message || "Credenciales incorrectas"));
-    }
+          // Redirigir según el rol
+          if (data.role === "admin") {
+              window.location.href = "./admin-dashboard.html";
+          } else {
+              window.location.href = "./dashboard.html";
+          }
+      } else {
+          alert("Credenciales incorrectas");
+      }
   } catch (error) {
-    console.error("Error en el login:", error);
-    alert("Ocurrió un error al iniciar sesión.");
+      console.error("Error en el login:", error);
+      alert("Error en el inicio de sesión");
   }
 }
-
+export { handleLogin };

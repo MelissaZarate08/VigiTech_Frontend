@@ -12,8 +12,11 @@ import { handleLogin } from '../adapters/controllers/userController.js';
 
 const loginForm = document.getElementById('login-form');
 loginForm.addEventListener('submit', async (e) => {
-  e.preventDefault();
+  e.preventDefault(); // Evita el comportamiento por defecto del formulario
+  
   const email = document.getElementById('login-email').value;
   const password = document.getElementById('login-password').value;
+
+  // Ahora pasamos los datos directamente
   await handleLogin(email, password);
 });

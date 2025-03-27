@@ -10,6 +10,7 @@ import { handleRegister } from '../adapters/controllers/userController.js';
   await requestNotificationPermission();
 })();
 
+document.addEventListener("DOMContentLoaded", () => {
 document.getElementById("register-form").addEventListener("submit", async function(event) {
   event.preventDefault();
 
@@ -22,7 +23,15 @@ document.getElementById("register-form").addEventListener("submit", async functi
     alert("Las contraseñas no coinciden.");
     return;
   }
-
-  // Llama a handleRegister para enviar los datos al backend
-  await handleRegister(name, email, password);
+   // Aquí se obtiene el rol, asegurándote de que el elemento existe
+    const roleElem = document.getElementById("register-role");
+    if (!roleElem) {
+      alert("No se encontró el elemento de selección del rol.");
+      return;
+    }
+    const role = roleElem.value;
+    
+    // Llama a handleRegister para enviar los datos al backend
+    await handleRegister(name, email, password, role);
+  });
 });

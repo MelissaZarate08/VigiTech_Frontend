@@ -33,19 +33,76 @@ export async function getSmokeData() {
   return new SmokeSensor(data[0]);
 }
 
-export async function sendSensorCommand(sensorType, action) {
+export async function sendSensorCommand(sensorType, sensorId, action) {
+  console.log(`Enviando comando: sensorType=${sensorType}, sensorId=${sensorId}, action=${action}`);
   try {
-    const response = await fetch(`${COMMAND_API_URL}/${sensorType}`, {
+    const response = await fetch(`${COMMAND_API_URL}/${sensorType}?id=${sensorId}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action }) // 'on' o 'off'
+      body: JSON.stringify({ action })
     });
-    if (!response.ok) throw new Error('Error al enviar el comando');
+
+    if (!response.ok) {
+      const errorResponse = await response.text();
+      console.error(`Error en la respuesta del servidor: ${errorResponse}`);
+      throw new Error('Error al enviar el comando');
+    }
+
     const result = await response.json();
-    console.log(`Comando enviado a ${sensorType}: ${action}`);
+    console.log(`Comando enviado a ${sensorType} (ID: ${sensorId}): ${action}`);
     return result;
   } catch (error) {
     console.error('Error al enviar el comando:', error);
     throw error;
   }
 }
+
+
+export async function sendSystemCommand(action) {
+  try {
+    const response = await fetch(`${COMMAND_API_URL}/system`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action })
+    });
+
+    if (!response.ok) {
+      const errorResponse = await response.text();
+      console.error(`Error en la respuesta del servidor (sistema): ${errorResponse}`);
+      throw new Error('Error al enviar el comando del sistema');
+    }
+
+    const result = await response.json();
+    console.log(`Comando enviado al sistema: ${action}`);
+    return result;
+  } catch (error) {
+    console.error('Error al enviar el comando del sistema:', error);
+    throw error;
+  }
+}
+
+export async function sendSensorConfigCommand(sensorType, action) {
+  try {
+    const response = await fetch(`${COMMAND_API_URL}/${sensorType}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action }) // 'on' o 'off'
+    });
+
+    if (!response.ok) {
+      const errorResponse = await response.text();
+      console.error(`Error en la respuesta del servidor para ${sensorType}: ${errorResponse}`);
+      throw new Error('Error al enviar el comando de configuración');
+    }
+
+    const result = await response.json();
+    console.log(`Comando enviado a ${sensorType}: ${action}`);
+    return result;
+  } catch (error) {
+    console.error('Error al enviar el comando de configuración:', error);
+    throw error;
+  }
+}
+
+
+
