@@ -1,6 +1,7 @@
 // src/infrastructure/services/firebaseService.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
 import { getMessaging, getToken, onMessage } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-messaging.js";
+import { showToast } from "./notificationUtil.js"; 
 
 const firebaseConfig = {
   apiKey: "AIzaSyDqnEmWLU16tNmjbPOQz9aEY-Y7GNJAEok",
@@ -71,11 +72,18 @@ export async function getFirebaseToken() {
 function onMessageListener() {
   onMessage(messaging, (payload) => {
     console.log("Mensaje recibido en primer plano:", payload);
+    const title = payload.notification.title;
+    const body = payload.notification.body;
+    
+    // Notificación nativa (opcional)
     if (Notification.permission === "granted") {
-      new Notification(payload.notification.title, {
-        body: payload.notification.body,
+      new Notification(title, {
+        body: body,
         icon: payload.notification.icon || "/icon.png",
       });
     }
+
+    // Notificación en la ventana usando Toastify
+    showToast(`${title} - ${body}`);
   });
 }
