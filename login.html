@@ -6,25 +6,34 @@
   <title>VigiTech - Iniciar Sesión</title>
   <!-- Carga el CSS de Toastify -->
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-
   <!-- Carga el script de Toastify (tipo normal, no module) -->
   <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-
   <link rel="stylesheet" href="./styles/login.css">
 </head>
 <body>
+  <header>
+    <a href="home.html" class="home-link">
+      <img src="./assets/images/chimenea-de-la-casa.png" alt="Inicio" class="home-icon">
+    </a>
+  </header>
+
   <div class="login-container">
-    <h1>Iniciar Sesión</h1>
-    <form id="login-form">
-      <label for="login-email">Correo</label>
-      <input type="email" id="login-email" placeholder="Tu correo electrónico" required>
+    <div class="image-section">
+      <img src="./assets/images/ojo.png" alt="Imagen Login">
+    </div>
+    <div class="form-section">
+      <h1>Iniciar Sesión</h1>
+      <form id="login-form">
+        <label for="login-email">Correo</label>
+        <input type="email" id="login-email" placeholder="Tu correo electrónico" required>
 
-      <label for="login-password">Contraseña</label>
-      <input type="password" id="login-password" placeholder="Tu contraseña" required>
+        <label for="login-password">Contraseña</label>
+        <input type="password" id="login-password" placeholder="Tu contraseña" required>
 
-      <button type="submit">Ingresar</button>
-    </form>
-    <p>¿No tienes cuenta? <a href="./register.html">Regístrate aquí</a></p>
+        <button type="submit">Ingresar</button>
+      </form>
+      <p>¿No tienes cuenta? <a href="./register.html">Regístrate aquí</a></p>
+    </div>
   </div>
 
   <script type="module" src="./src/scripts/login.js"></script>

@@ -1,4 +1,4 @@
-/* Reset */
+/* Reset y tipografía base */
 * {
   margin: 0;
   padding: 0;
@@ -7,100 +7,148 @@
 }
 
 body {
-  background: #121212;
+  background-color: #0a100b;
   color: #fff;
+}
+
+/* Contenedor con imagen de fondo para header y dashboard */
+.dashboard-container {
+  background: url("../assets/images/VigiTech.png") no-repeat center center/cover;
+  position: relative;
 }
 
 /* Header */
 header {
-  width: 80%; /* Ajusta el ancho para que no ocupe todo el espacio */
-  margin: 0 auto; /* Centra el elemento */
+  width: 80%;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  background: transparent;
+  border-bottom: 2px solid #34a853; /* Línea divisoria */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  background: #111111;
-  border-bottom: 2px solid #34a853;
+  position: relative;
+  z-index: 2;
 }
 
 
-
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #00e676;
+.header-img {
+  width: 130px;
+  height: auto;
 }
 
 nav button {
-  background: #00e676;
+  background: #067c43;
   border: none;
-  padding: 0.5rem 1rem;
+  padding: 0.6rem 1.2rem;
   border-radius: 5px;
   cursor: pointer;
+  color: #f0efef;
+  font-weight: bold;
+  transition: transform 0.2s ease;
 }
 
 nav button:hover {
   transform: scale(1.05);
 }
 
-/* Contenido principal */
-.home-content {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+/* Sección Hero / Dashboard */
+.hero {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.hero-overlay {
+  background-color: rgba(0, 0, 0, 0.5); /* Ajusta la opacidad si es necesario */
+  width: 100%;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   padding: 2rem;
-  height: auto; /* Permite que el contenido crezca dinámicamente */
 }
 
-
-.text-section {
-  padding: 2rem;
-  background: linear-gradient(135deg, #1f1f1f, #222);
-  border-radius: 15px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-  transition: transform 0.3s ease;
-}
-
-.text-section:hover {
-  transform: scale(1.05); /* Pequeño efecto de hover para dinamismo */
-}
-
-.text-section h1 {
-  color: #34a853;
-  font-size: 2.5rem;
+.hero-title {
+  font-size: 3rem;
+  color: #a2fbb9;
   margin-bottom: 1rem;
+
+  letter-spacing: 4px;
 }
 
-.text-section p {
+.hero-text {
+  font-size: 1.2rem;
+  max-width: 800px;
   line-height: 1.6;
   color: #dcdcdc;
 }
 
-.image-section img {
-  width: 100%;
-  max-width: 500px;
-  height: auto;
-  border-radius: 15px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+/* Sección Sensores */
+.sensors {
+  width: 80%;
+  margin: 2rem auto;
+}
+
+.section-title {
+  font-size: 2rem;
+  color: #799b82;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.sensor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+
+.sensor-card {
+  background: #0f1a13;
+  border-radius: 10px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.image-section img:hover {
-  transform: scale(1.03);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+.sensor-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.5);
 }
 
+.sensor-icon {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 1rem auto;
+  display: block;
+}
+
+.sensor-card h3 {
+  margin-bottom: 0.5rem;
+  color: #01b455;
+  font-size: 1.3rem;
+}
+
+.sensor-card p {
+  color: #dcdcdc;
+  line-height: 1.4;
+  font-size: 0.95rem;
+}
 
 /* Footer */
 footer {
+  width: 80%;
+  margin: 0 auto;
   text-align: center;
   padding: 1rem;
-  background: #101010;
+  background: #0a100b;
   border-top: 2px solid #34a853;
-  width: 80%; /* Ajusta el ancho para que no ocupe todo el espacio */
-  margin: 0 auto; /* Centra el elemento */
 }
 
 .social-links {
@@ -111,26 +159,17 @@ footer {
 }
 
 .social-links img {
-  width: 30px; /* Ajusta el tamaño según sea necesario */
-  height: 30px; /* Mantén proporciones cuadradas */
-  margin: 0 10px; /* Espaciado entre los iconos */
+  width: 30px;
+  height: 30px;
+  transition: transform 0.2s ease;
 }
 
-.home-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 80vh;
-  padding: 2rem;
+.social-links img:hover {
+  transform: scale(1.1);
 }
 
-.text-section, .image-section {
-  width: 30%;
-}
-
-.responsive-image {
-  width: 50%;
-  height: auto;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+.footer-text {
+  font-size: 0.8rem;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #aaa;
 }

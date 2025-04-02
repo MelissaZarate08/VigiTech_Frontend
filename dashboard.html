@@ -11,14 +11,13 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <div class="container-dash">
+  <!-- Contenedor principal con color de fondo sólido -->
+  <div class="dashboard-container">
+    <!-- Header centrado (80% de ancho) -->
     <header>
       <div class="header-left">
-        <h1>VigiTech</h1>
-        <div class="user-info">
-          <img src="./assets/user-icon.png" alt="Usuario" />
-          <span id="user-name">Usuario</span>
-        </div>
+        <!-- Logo a la izquierda -->
+        <img src="./assets/images/logoVigiTechBlanco.png" alt="VigiTech Logo" class="logo-img">
       </div>
       <div class="header-center">
         <button id="btn-config" class="mod-btn">Configuración de sensores</button>
@@ -26,9 +25,17 @@
         <button id="btn-emergency" class="mod-btn">Números de emergencia</button>
       </div>
       <div class="header-right">
-        <button id="btn-logout" class="logout-btn">Cerrar Sesión</button>
+        <!-- Contenedor interactivo del usuario -->
+        <div class="user-container" id="user-container">
+          <div class="user-info">
+            <img src="./assets/images/gente.png" alt="Usuario">
+            <span id="user-name">Usuario</span>
+          </div>
+          <!-- Botón oculto inicialmente -->
+          <button id="btn-logout" class="logout-btn">Cerrar Sesión</button>
+        </div>
       </div>
-    </header>
+    </header>     
 
     <!-- Interruptor para encender/apagar el sistema completo -->
     <div class="system-toggle">
@@ -39,10 +46,11 @@
       <span id="system-status-label">Sistema Activado</span>
     </div>
 
+    <!-- Contenido principal a pantalla completa -->
     <main class="dashboard-content">
       <!-- Fila Superior: Datos y Cámara -->
       <div class="top-row">
-        <!-- Panel Izquierdo: Datos en Tiempo Real -->
+        <!-- Panel Izquierdo: Datos en Tiempo Real en línea vertical -->
         <aside class="sensor-data">
           <h2>Datos en Tiempo Real</h2>
           <div class="sensor-grid">
@@ -68,8 +76,7 @@
         <!-- Panel Derecho: Cámara en Vivo -->
         <section class="camera">
           <h2>Cámara en Vivo</h2>
-          <img src="http://TU_ESP32_CAM_IP/stream" alt="Cámara en Vivo"/>
-        </section>
+          <img src="http://192.168.2.192/" alt="Cámara en Vivo"/>        </section>
       </div>
 
       <!-- Fila Inferior: Monitoreo -->
@@ -120,7 +127,19 @@
       </section>
     </main>
 
+    <!-- Footer centrado (80% de ancho) -->
     <footer>
+      <div class="social-links">
+        <a href="https://www.facebook.com" class="social-icon" target="_blank" rel="noopener noreferrer">
+          <img src="./assets/images/facebook (1).png" alt="Facebook">
+        </a>
+        <a href="https://www.whatsapp.com" class="social-icon" target="_blank" rel="noopener noreferrer">
+          <img src="./assets/images/whatsapp.png" alt="WhatsApp">
+        </a>
+        <a href="https://www.instagram.com" class="social-icon" target="_blank" rel="noopener noreferrer">
+          <img src="./assets/images/instagram (1).png" alt="Instagram">
+        </a>
+      </div>
       <p>&copy; 2025 VigiTech. Todos los derechos reservados.</p>
     </footer>
   </div>
@@ -133,7 +152,7 @@
       <!-- Cuadrícula 2x2 para la configuración individual -->
       <div class="sensor-grid-config">
         <div class="sensor-config-card">
-          <img src="./assets/images/puerta-abierta.png" alt="Puerta">
+          <img src="./assets/images/puerta-abierta (2).png" alt="Puerta">
           <h3>Puerta</h3>
           <label class="switch">
             <input type="checkbox" id="chk-door" checked>
@@ -141,7 +160,7 @@
           </label>
         </div>
         <div class="sensor-config-card">
-          <img src="./assets/images/calle-de-la-lampara.png" alt="Luz">
+          <img src="./assets/images/calle-de-la-lampara (1).png" alt="Luz">
           <h3>Luz</h3>
           <label class="switch">
             <input type="checkbox" id="chk-light" checked>
@@ -149,7 +168,7 @@
           </label>
         </div>
         <div class="sensor-config-card">
-          <img src="./assets/images/usuario-corriendo-rapido.png" alt="Movimiento">
+          <img src="./assets/images/usuario-corriendo-rapido (2).png" alt="Movimiento">
           <h3>Movimiento</h3>
           <label class="switch">
             <input type="checkbox" id="chk-motion" checked>
@@ -157,7 +176,7 @@
           </label>
         </div>
         <div class="sensor-config-card">
-          <img src="./assets/images/fumar.png" alt="Humo">
+          <img src="./assets/images/humo-de-fuego.png" alt="Humo">
           <h3>Humo</h3>
           <label class="switch">
             <input type="checkbox" id="chk-smoke" checked>
@@ -170,31 +189,31 @@
   </div>
 
   <!-- Modal Números de Emergencia -->
-<div class="modal" id="modal-emergency">
-  <div class="modal-content emergency-modal">
-    <span class="close" id="close-emergency">&times;</span>
-    <h2>Contactos de Emergencia</h2>
-    <div class="emergency-cards">
-      <div class="emergency-card">
-        <img src="./assets/images/policia-del-usuario.png" alt="Policía">
-        <h3>Policía</h3>
-        <p>911</p>
+  <div class="modal" id="modal-emergency">
+    <div class="modal-content emergency-modal">
+      <span class="close" id="close-emergency">&times;</span>
+      <h2>Contactos de Emergencia</h2>
+      <div class="emergency-cards">
+        <div class="emergency-card">
+          <img src="./assets/images/alguacil-de-la-insignia (3).png" alt="Policía">
+          <h3>Policía</h3>
+          <p>911</p>
+        </div>
+        <div class="emergency-card">
+          <img src="./assets/images/extintor-de-incendios (3).png" alt="Bomberos">
+          <h3>Bomberos</h3>
+          <p>080</p>
+        </div>
+        <div class="emergency-card">
+          <img src="./assets/images/farmacia (3).png" alt="Cruz Roja">
+          <h3>Cruz Roja</h3>
+          <p>065</p>
+        </div>
       </div>
-      <div class="emergency-card">
-        <img src="./assets/images/extintor-de-incendios (1).png" alt="Bomberos">
-        <h3>Bomberos</h3>
-        <p>080</p>
-      </div>
-      <div class="emergency-card">
-        <img src="./assets/images/farmacia.png" alt="Cruz Roja">
-        <h3>Cruz Roja</h3>
-        <p>065</p>
-      </div>
-      <!-- Puedes agregar más contactos si lo deseas -->
     </div>
   </div>
-</div>
 
+  <!-- Script principal -->
   <script type="module" src="./src/scripts/dashboard.js"></script>
 </body>
 </html>

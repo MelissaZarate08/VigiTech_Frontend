@@ -2,9 +2,9 @@
 import { getFirebaseToken } from "../../infraestructure/services/firebaseService.js";
 import { showToast } from "../../infraestructure/services/notificationUtil.js";
 
-export async function handleRegister(name, email, password, role) {
+export async function handleRegister(name, email, password, role, systemID) {
   try {
-    console.log("Registrando con:", name, email, password, role);
+    console.log("Registrando con:", name, email, password, role, systemID);
 
     const firebaseToken = await getFirebaseToken();
     console.log("Token de Firebase obtenido:", firebaseToken);
@@ -18,6 +18,7 @@ export async function handleRegister(name, email, password, role) {
         password,
         firebaseToken: firebaseToken || '',
         role,
+        id_Sistema: systemID 
       }),
     });
 

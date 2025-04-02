@@ -22,6 +22,9 @@ export function setupSensorDashboard() {
   const smokeChartCtx = document.getElementById('smokeChart').getContext('2d');
 
   // Inicializamos gráficos vacíos (ejemplo simple)
+  // Configuración de los gráficos mejorados
+
+
   const doorChart = new Chart(doorChartCtx, {
     type: 'line',
     data: {
@@ -29,9 +32,33 @@ export function setupSensorDashboard() {
       datasets: [{
         label: 'Puerta (Abierta=1 / Cerrada=0)',
         data: [],
-        borderColor: 'blue',
-        fill: false
+        borderColor: '#007bff',
+        backgroundColor: 'rgba(0, 123, 255, 0.1)',
+        fill: true,
+        tension: 0.3,
+        borderWidth: 2,
+        pointRadius: 4,
+        pointBackgroundColor: '#fff',
+        pointBorderColor: '#007bff',
+        pointHoverRadius: 6
       }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: true,
+          labels: {
+            color: 'white',
+            font: { size: 12 }
+          }
+        },
+        tooltip: {
+          backgroundColor: 'rgba(0,0,0,0.7)',
+          titleFont: { size: 14 },
+          bodyFont: { size: 12 }
+        }
+      },
     }
   });
 
@@ -40,11 +67,35 @@ export function setupSensorDashboard() {
     data: {
       labels: [],
       datasets: [{
-        label: 'Luminosidad',
+        label: 'Luminosidad (lx)',
         data: [],
-        borderColor: 'yellow',
-        fill: false
+        borderColor: '#ffc107',
+        backgroundColor: 'rgba(255, 193, 7, 0.1)',
+        fill: true,
+        tension: 0.3,
+        borderWidth: 2,
+        pointRadius: 4,
+        pointBackgroundColor: '#fff',
+        pointBorderColor: '#ffc107',
+        pointHoverRadius: 6
       }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: true,
+          labels: {
+            color: 'white',
+            font: { size: 12 }
+          }
+        },
+        tooltip: {
+          backgroundColor: 'rgba(0,0,0,0.7)',
+          titleFont: { size: 14 },
+          bodyFont: { size: 12 }
+        }
+      },
     }
   });
 
@@ -55,9 +106,33 @@ export function setupSensorDashboard() {
       datasets: [{
         label: 'Intensidad Movimiento',
         data: [],
-        borderColor: 'green',
-        fill: false
+        borderColor: '#28a745',
+        backgroundColor: 'rgba(40, 167, 69, 0.1)',
+        fill: true,
+        tension: 0.3,
+        borderWidth: 2,
+        pointRadius: 4,
+        pointBackgroundColor: '#fff',
+        pointBorderColor: '#28a745',
+        pointHoverRadius: 6
       }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: true,
+          labels: {
+            color: 'white',
+            font: { size: 12 }
+          }
+        },
+        tooltip: {
+          backgroundColor: 'rgba(0,0,0,0.7)',
+          titleFont: { size: 14 },
+          bodyFont: { size: 12 }
+        }
+      },
     }
   });
 
@@ -68,12 +143,36 @@ export function setupSensorDashboard() {
       datasets: [{
         label: 'Nivel de Humo',
         data: [],
-        borderColor: 'red',
-        fill: false
+        borderColor: '#dc3545',
+        backgroundColor: 'rgba(220, 53, 69, 0.1)',
+        fill: true,
+        tension: 0.3,
+        borderWidth: 2,
+        pointRadius: 4,
+        pointBackgroundColor: '#fff',
+        pointBorderColor: '#dc3545',
+        pointHoverRadius: 6
       }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: true,
+          labels: {
+            color: 'white',
+            font: { size: 12 }
+          }
+        },
+        tooltip: {
+          backgroundColor: 'rgba(0,0,0,0.7)',
+          titleFont: { size: 14 },
+          bodyFont: { size: 12 }
+        }
+      },
     }
   });
-
+  
   // Objeto para mantener el estado (activado/desactivado) de cada sensor
   const sensorsEnabled = {
     door: true,

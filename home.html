@@ -2,41 +2,102 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VigiTech - Inicio</title>
   <link rel="stylesheet" href="./styles/home.css" />
 </head>
 <body>
-  <header>
-    <div class="logo">VigiTech</div>
-    <nav>
-      <button id="btn-login">Iniciar Sesión</button>
-    </nav>
-  </header>
+  <!-- Contenedor que incluye el header y el dashboard con la imagen de fondo -->
+  <div class="dashboard-container">
+    <!-- Header -->
+    <header>
+      <div class="header-logo">
+        <img src="./assets/images/logoVigiTechBlanco.png" alt="VigiTech Logo" class="header-img">
+      </div>
+      <nav>
+        <button id="btn-login">Iniciar Sesión</button>
+      </nav>
+    </header>
 
-  <main class="home-content">
-    <div class="text-section">
-      <h1>Bienvenido a VigiTech</h1>
-      <p>Monitoreo de sensores y cámara en tiempo real para tu hogar o negocio. Protege lo que más importa con nuestra tecnología avanzada.</p>
-    </div>
-    <div class="image-section">
-      <img src="./assets/images/Home-vigitech.png" alt="VigiTech Seguridad" class="responsive-image" />
-    </div>
-  </main>
+    <!-- Dashboard / Hero -->
+    <section class="hero">
+      <div class="hero-overlay">
+        <h1 class="hero-title">VigiTech</h1>
+        <p class="hero-text">
+          Somos un sistema de seguridad avanzado para hogares y comercios. 
+          Monitoreamos tu espacio en tiempo real con sensores inteligentes y cámara en vivo. 
+          Tu tranquilidad es nuestra prioridad: protege lo que más importa con nuestra tecnología de punta.
+        </p>
+      </div>
+    </section>
+  </div>
 
+  <!-- Sección de Sensores -->
+  <section class="sensors">
+    <h2 class="section-title">Nuestro Sistema</h2>
+    <div class="sensor-grid">
+      <!-- Sensor Magnético -->
+      <div class="sensor-card">
+        <img src="./assets/images/iman.png" alt="Sensor Magnético" class="sensor-icon">
+        <h3>Sensor Magnético</h3>
+        <p>Ideal para puertas y ventanas. Detecta aperturas no autorizadas y envía alertas de inmediato.</p>
+      </div>
+      <!-- Sensor de Gas -->
+      <div class="sensor-card">
+        <img src="./assets/images/quemador-de-fuego.png" alt="Sensor de Gas" class="sensor-icon">
+        <h3>Sensor de Gas</h3>
+        <p>Monitorea fugas de gas y te avisa para prevenir accidentes, garantizando la seguridad de tu entorno.</p>
+      </div>
+      <!-- Sensor de Luz -->
+      <div class="sensor-card">
+        <img src="./assets/images/luz-emergencia-encendida (1).png" alt="Sensor de Luz" class="sensor-icon">
+        <h3>Sensor de Luz</h3>
+        <p>Detecta cambios de iluminación y ajusta el ambiente para mayor eficiencia y confort.</p>
+      </div>
+      <!-- Sensor de Movimiento -->
+      <div class="sensor-card">
+        <img src="./assets/images/usuario-corriendo-rapido (2).png" alt="Sensor de Movimiento" class="sensor-icon">
+        <h3>Sensor de Movimiento</h3>
+        <p>Identifica presencias en áreas restringidas y emite alertas instantáneas para tu seguridad.</p>
+      </div>
+      <!-- Cámara en Vivo -->
+      <div class="sensor-card">
+        <img src="./assets/images/camara-web (1).png" alt="Cámara en Vivo" class="sensor-icon">
+        <h3>Cámara en Vivo</h3>
+        <p>Visualiza tu propiedad en tiempo real desde cualquier lugar con una transmisión segura y de alta calidad.</p>
+      </div>
+      <div class="sensor-card">
+        <img src="./assets/images/migracion-de-datos.png" alt="Datos" class="sensor-icon">
+        <h3>Datos en tiempo real</h3>
+        <p>Visualiza tu propiedad en tiempo real desde cualquier lugar con una transmisión segura y de alta calidad.</p>
+      </div>
+      <div class="sensor-card">
+        <img src="./assets/images/grafico-histograma.png" alt="Estadisticas" class="sensor-icon">
+        <h3>Estadisticas</h3>
+        <p>Visualiza tu propiedad en tiempo real desde cualquier lugar con una transmisión segura y de alta calidad.</p>
+      </div>
+      <div class="sensor-card">
+        <img src="./assets/images/punto-de-sobre.png" alt="Mensajes" class="sensor-icon">
+        <h3>Mensajes</h3>
+        <p>Visualiza tu propiedad en tiempo real desde cualquier lugar con una transmisión segura y de alta calidad.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer>
     <div class="social-links">
       <a href="https://www.facebook.com" class="social-icon" target="_blank" rel="noopener noreferrer">
-        <img src="./assets/images/facebook (1).png" alt="Facebook" />
+        <img src="./assets/images/facebook (1).png" alt="Facebook">
+      </a>
+      <a href="https://www.whatsapp.com" class="social-icon" target="_blank" rel="noopener noreferrer">
+        <img src="./assets/images/whatsapp.png" alt="WhatsApp">
       </a>
       <a href="https://www.instagram.com" class="social-icon" target="_blank" rel="noopener noreferrer">
-        <img src="./assets/images/whatsapp.png" alt="Whatsapp" />
-      </a>
-      <a href="https://www.twitter.com" class="social-icon" target="_blank" rel="noopener noreferrer">
-        <img src="./assets/images/instagram (1).png" alt="Instagram" />
+        <img src="./assets/images/instagram (1).png" alt="Instagram">
       </a>
     </div>
-    <p>&copy; 2025 VigiTech - Seguridad Inteligente</p>
+    <p class="footer-text">&copy; 2025 VigiTech - Todos los derechos reservados</p>
   </footer>
 
   <script type="module" src="./src/scripts/home.js"></script>
