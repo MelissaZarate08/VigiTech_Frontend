@@ -3,13 +3,12 @@ import { LightSensor } from '../../entities/light.js';
 import { MotionSensor } from '../../entities/motion.js';
 import { SmokeSensor } from '../../entities/smoke.js';
 
-const SENSOR_API_URL = 'http://192.168.2.187:8081/sensor';
-const COMMAND_API_URL = 'http://192.168.2.187:8081/command';
+const SENSOR_API_URL = 'http://13.219.0.108:8081/sensor';
+const COMMAND_API_URL = 'http://13.219.0.108:8081/command';
 
 export async function getDoorData() {
   const response = await fetch(`${SENSOR_API_URL}/door`);
   const data = await response.json();
-  // Asumimos que el primer elemento es el más reciente, según el orden que devuelve el endpoint.
   return new DoorSensor(data[0]);
 }
 
@@ -86,7 +85,7 @@ export async function sendSensorConfigCommand(sensorType, action) {
     const response = await fetch(`${COMMAND_API_URL}/${sensorType}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action }) // 'on' o 'off'
+      body: JSON.stringify({ action }) 
     });
 
     if (!response.ok) {

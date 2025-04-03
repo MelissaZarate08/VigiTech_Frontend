@@ -1,4 +1,3 @@
-// src/infrastructure/services/firebaseService.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
 import { getMessaging, getToken, onMessage } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-messaging.js";
 import { showToast } from "./notificationUtil.js"; 
@@ -14,13 +13,10 @@ const firebaseConfig = {
 
 let messaging = null;
 
-// Inicializa Firebase y el Service Worker
-// src/infrastructure/services/firebaseService.js
 export function initializeFirebase() {
   const app = initializeApp(firebaseConfig);
   messaging = getMessaging(app);
 
-  // Registra el service worker para recibir notificaciones en 2do plano
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker
       .register("/firebase-messaging-sw.js")
@@ -32,13 +28,9 @@ export function initializeFirebase() {
       });
   }
 
-  onMessageListener(); // Para escuchar mensajes en primer plano
+  onMessageListener(); 
 }
 
-/**
- * Solicita al usuario el permiso para mostrar notificaciones (recomendable llamarlo
- * en un flujo de UI, como al cargar la página o al dar clic en un botón).
- */
 export async function requestNotificationPermission() {
   const permission = await Notification.requestPermission();
   if (permission === "granted") {
@@ -48,9 +40,7 @@ export async function requestNotificationPermission() {
   }
 }
 
-/**
- * Devuelve el token de notificaciones de Firebase
- */
+
 export async function getFirebaseToken() {
   try {
     const currentToken = await getToken(messaging, {
@@ -75,7 +65,6 @@ function onMessageListener() {
     const title = payload.notification.title;
     const body = payload.notification.body;
     
-    // Notificación nativa (opcional)
     if (Notification.permission === "granted") {
       new Notification(title, {
         body: body,
@@ -83,7 +72,6 @@ function onMessageListener() {
       });
     }
 
-    // Notificación en la ventana usando Toastify
     showToast(`${title} - ${body}`);
   });
 }

@@ -1,5 +1,3 @@
-// src/infrastructure/services/notificationService.js
-
 export function requestNotificationPermission() {
     Notification.requestPermission().then((permission) => {
       if (permission === "granted") {

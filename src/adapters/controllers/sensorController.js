@@ -1,4 +1,3 @@
-// src/adapters/controllers/sensorController.js
 import { 
   getDoorData, 
   getLightData, 
@@ -15,20 +14,15 @@ export function setupSensorDashboard() {
   const smokeStatusEl = document.getElementById('smoke-status');
   const tableBody = document.getElementById('monitoring-table-body');
 
-  // Canvases para Chart.js
   const doorChartCtx = document.getElementById('doorChart').getContext('2d');
   const lightChartCtx = document.getElementById('lightChart').getContext('2d');
   const motionChartCtx = document.getElementById('motionChart').getContext('2d');
   const smokeChartCtx = document.getElementById('smokeChart').getContext('2d');
 
-  // Inicializamos gráficos vacíos (ejemplo simple)
-  // Configuración de los gráficos mejorados
-
-
   const doorChart = new Chart(doorChartCtx, {
     type: 'line',
     data: {
-      labels: [],  // timestamps
+      labels: [], 
       datasets: [{
         label: 'Puerta (Abierta=1 / Cerrada=0)',
         data: [],
@@ -141,7 +135,7 @@ export function setupSensorDashboard() {
     data: {
       labels: [],
       datasets: [{
-        label: 'Nivel de Humo',
+        label: 'Nivel de Gas',
         data: [],
         borderColor: '#dc3545',
         backgroundColor: 'rgba(220, 53, 69, 0.1)',
@@ -173,7 +167,6 @@ export function setupSensorDashboard() {
     }
   });
   
-  // Objeto para mantener el estado (activado/desactivado) de cada sensor
   const sensorsEnabled = {
     door: true,
     light: true,
@@ -181,7 +174,6 @@ export function setupSensorDashboard() {
     smoke: true
   };
 
-  // Función para agregar filas a la tabla de eventos críticos
   function addTableRow(sensorName, state, value, timestamp) {
     console.log(`Agregando fila: ${sensorName} - ${state} - ${value} - ${timestamp}`);
     const row = document.createElement('tr');
@@ -191,7 +183,7 @@ export function setupSensorDashboard() {
       <td>${value}</td>
       <td>${timestamp}</td>
     `;
-    tableBody.prepend(row); // prepend para ver primero los eventos recientes
+    tableBody.prepend(row); 
 
     while (tableBody.childElementCount > 30) {
       tableBody.removeChild(tableBody.lastChild);
@@ -199,26 +191,24 @@ export function setupSensorDashboard() {
   }
 
   function formatTimestamp(utcTimestamp) {
-    const date = new Date(utcTimestamp); // Crear la fecha con el timestamp recibido
+    const date = new Date(utcTimestamp); 
 
     return date.toLocaleTimeString("es-MX", {
-      hour12: false, // Formato 24 horas
+      hour12: false, 
       hour: "2-digit",
       minute: "2-digit",
       second: "2-digit",
-      timeZone: "UTC", // Mostrar exactamente la hora recibida sin ajustes de zona horaria
+      timeZone: "UTC", 
     });
   }
   
 
   async function updateSensors() {
-    // Si el sistema está desactivado, no se actualizan sensores.
     if (!window.systemActive) {
       console.log("Sistema desactivado, no se actualizan sensores.");
       return;
     }
   
-    // SENSOR DE PUERTA
     if (sensorsEnabled.door) {
      try {
         const doorData = await getDoorData();
@@ -246,7 +236,6 @@ export function setupSensorDashboard() {
     if (sensorsEnabled.light) {
       try {
         const lightData = await getLightData();
-        // Verificar si el sensor sigue activado al momento de recibir los datos
         if (sensorsEnabled.light) {
           lightStatusEl.textContent = `${lightData.luminosity} lx`;
           const lightLabel = formatTimestamp(lightData.timestamp);
@@ -254,7 +243,6 @@ export function setupSensorDashboard() {
           lightChart.data.datasets[0].data.push(lightData.luminosity);
           lightChart.update();
         } else {
-          // Si se desactivó durante la petición, se muestra "Sensor desactivado"
           lightStatusEl.textContent = 'Sensor desactivado';
         }
       } catch (error) {
@@ -265,10 +253,6 @@ export function setupSensorDashboard() {
     }
 
   
-   
-  
-    // SENSOR DE MOVIMIENTO
- // SENSOR DE MOVIMIENTO
     if (sensorsEnabled.motion) {
       try {
        const motionData = await getMotionData();
@@ -291,7 +275,6 @@ export function setupSensorDashboard() {
      motionStatusEl.textContent = 'Sensor desactivado';
     }
   
-// SENSOR DE HUMO
     if (sensorsEnabled.smoke) {
       try {
        const smokeData = await getSmokeData();
@@ -302,13 +285,13 @@ export function setupSensorDashboard() {
          smokeChart.data.datasets[0].data.push(smokeData.smokeLevel);
          smokeChart.update();
           if (smokeData.alarm) {
-            addTableRow('Humo', 'Alarma activada', smokeData.smokeLevel, smokeLabel);
+            addTableRow('Gas', 'Alarma activada', smokeData.smokeLevel, smokeLabel);
           }
        } else {
          smokeStatusEl.textContent = 'Sensor desactivado';
        }
       } catch (error) {
-        console.error('Error actualizando sensor de humo:', error);
+        console.error('Error actualizando sensor de gas:', error);
       }
     } else {
      smokeStatusEl.textContent = 'Sensor desactivado';
@@ -316,13 +299,8 @@ export function setupSensorDashboard() {
 
   }
   
-
-  // Actualiza de inmediato y luego cada 5 segundos
   updateSensors();
   setInterval(updateSensors, 5000);
-
-  // Para poder actualizar el estado de sensores desde el modal de configuración,
-  // se expone la referencia del objeto sensorsEnabled en el ámbito global del dashboard.
   window.sensorsEnabled = sensorsEnabled;
 }
 

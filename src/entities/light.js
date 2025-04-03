@@ -1,4 +1,3 @@
-// src/entities/light.js
 export class LightSensor {
     constructor({ id, timestamp, luminosity }) {
       this.id = id;

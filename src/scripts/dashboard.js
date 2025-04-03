@@ -62,6 +62,13 @@ systemSwitch.addEventListener('change', async () => {
     try {
       await sendSystemCommand('on');
       window.systemActive = true;
+      Toastify({
+        text: "Sistema activado",
+        duration: 3000,
+        gravity: "top",
+        position: "right",
+        backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)"
+      }).showToast();
     } catch (error) {
       console.error('No se pudo activar el sistema', error);
     }
@@ -70,6 +77,13 @@ systemSwitch.addEventListener('change', async () => {
     try {
       await sendSystemCommand('off');
       window.systemActive = false;
+      Toastify({
+        text: "Sistema desactivado",
+        duration: 3000,
+        gravity: "top",
+        position: "right",
+        backgroundColor: "linear-gradient(to right, #e74c3c, #c0392b)"
+      }).showToast();
     } catch (error) {
       console.error('No se pudo desactivar el sistema', error);
     }
@@ -83,7 +97,14 @@ document.getElementById('save-config').addEventListener('click', () => {
   window.sensorsEnabled.motion = document.getElementById('chk-motion').checked;
   window.sensorsEnabled.smoke = document.getElementById('chk-smoke').checked;
 
-  alert("Configuración guardada");
+  Toastify({
+    text: "Configuración guardada",
+    duration: 3000,
+    gravity: "top",
+    position: "right",
+    backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)"
+  }).showToast();
+
   document.getElementById('modal-config').style.display = 'none';
 });
 
@@ -106,7 +127,13 @@ document.getElementById('chk-smoke').addEventListener('change', (e) => {
 document.addEventListener("DOMContentLoaded", () => {
   const role = localStorage.getItem("role");
   if (role !== "user") {
-      alert("Acceso denegado");
+      Toastify({
+      text: "Acceso denegado",
+      duration: 3000,
+      gravity: "top",
+      position: "right",
+      backgroundColor: "linear-gradient(to right, #e74c3c, #c0392b)"
+    }).showToast();
       window.location.href = "login.html";
   }
 });

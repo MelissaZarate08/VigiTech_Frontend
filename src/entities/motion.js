@@ -1,4 +1,3 @@
-// src/entities/motion.js
 export class MotionSensor {
     constructor({ id, timestamp, motion_detected, intensity }) {
       this.id = id;

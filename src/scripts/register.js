@@ -1,13 +1,9 @@
-// src/scripts/register.js
 import { initializeFirebase, requestNotificationPermission } from '../infraestructure/services/firebaseService.js';
 import { handleRegister } from '../adapters/controllers/userController.js';
 
 (async () => {
-  // Inicializa Firebase (solo debe hacerse una vez)
   initializeFirebase();
-  
-  // Pide permiso para notificaciones
-  await requestNotificationPermission();
+   await requestNotificationPermission();
 })();
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -25,7 +21,6 @@ document.getElementById("register-form").addEventListener("submit", async functi
     alert("Las contraseñas no coinciden.");
     return;
   }
-   // Aquí se obtiene el rol, asegurándote de que el elemento existe
     const roleElem = document.getElementById("register-role");
     if (!roleElem) {
       alert("No se encontró el elemento de selección del rol.");
@@ -33,7 +28,6 @@ document.getElementById("register-form").addEventListener("submit", async functi
     }
     const role = roleElem.value;
     
-    // Llama a handleRegister para enviar los datos al backend
     await handleRegister(name, email, password, role, systemID);
   });
 });

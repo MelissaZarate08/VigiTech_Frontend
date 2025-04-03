@@ -1,4 +1,3 @@
-/* Reset y tipografía base */
 * {
   margin: 0;
   padding: 0;
@@ -11,7 +10,6 @@ body {
   color: #fff;
 }
 
-/* Contenedor principal con fondo de color sólido */
 .dashboard-container {
   background-color: #0a100b;
   min-height: 100vh;
@@ -20,7 +18,6 @@ body {
   justify-content: space-between;
 }
 
-/* Header centrado (80% de ancho) */
 header {
   width: 80%;
   margin: 1rem auto 0 auto;
@@ -33,7 +30,6 @@ header {
   z-index: 2;
 }
 
-/* Logo a la izquierda */
 .header-left {
   display: flex;
   align-items: center;
@@ -44,7 +40,6 @@ header {
   height: auto;
 }
 
-/* Navegación central */
 .header-center {
   display: flex;
   align-items: center;
@@ -70,7 +65,6 @@ header {
   margin: 0 10px;
 }
 
-/* Información del usuario y logout a la derecha (columna) */
 .header-right {
   display: flex;
   flex-direction: column;
@@ -105,23 +99,20 @@ header {
   transform: scale(1.05);
 }
 
-/* Contenedor del usuario */
 .user-container {
   position: relative;
   cursor: pointer;
 }
 
-/* Info del usuario siempre visible */
 .user-info {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-/* Botón de logout oculto inicialmente con efecto deslizante */
 .logout-btn {
   position: absolute;
-  top: calc(100% + 25px); /* Ajusta el valor (5px) según lo que necesites */
+  top: calc(100% + 25px); 
   right: 0;
   background: #01b455;
   border: none;
@@ -137,7 +128,6 @@ header {
 }
 
 
-/* Al activar la clase "active", se muestra el botón */
 .user-container.active .logout-btn {
   opacity: 1;
   visibility: visible;
@@ -145,7 +135,6 @@ header {
 }
 
 
-/* Interruptor del sistema */
 .system-toggle {
   text-align: center;
   margin: 1rem 0;
@@ -155,7 +144,6 @@ header {
   gap: 1rem;
 }
 
-/* Toggle Switch (sin modificar) */
 .switch {
   position: relative;
   display: inline-block;
@@ -201,14 +189,12 @@ header {
   transform: translateX(26px);
 }
 
-/* Contenido principal */
 .dashboard-content {
   width: 100%;
   padding: 2rem 0;
   flex: 1;
 }
 
-/* Fila Superior: Datos y Cámara */
 .top-row {
   display: flex;
   gap: 2rem;
@@ -217,7 +203,6 @@ header {
   margin: 0 auto;
 }
 
-/* Panel Izquierdo: Datos en Tiempo Real en una columna vertical */
 .sensor-data {
   flex: .5;
   background: rgba(0, 0, 0, 0.6);
@@ -231,7 +216,6 @@ header {
   text-align: center;
 }
 
-/* Dispone cada sensor en una única columna */
 .sensor-grid {
   display: flex;
   flex-direction: column;
@@ -262,7 +246,6 @@ header {
   font-size: 0.95rem;
 }
 
-/* Panel Derecho: Cámara en Vivo */
 .camera {
   flex: 1;
   border-radius: 10px;
@@ -283,7 +266,6 @@ header {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
-/* Sección de Monitoreo */
 .monitoring {
   background: rgba(0, 0, 0, 0.6);
   padding: 1.5rem;
@@ -298,7 +280,6 @@ header {
   text-align: center;
 }
 
-/* Toggle de vista (Gráficas / Tabla) */
 .toggle-view {
   text-align: center;
   margin-bottom: 1rem;
@@ -321,8 +302,6 @@ header {
   color: #000;
 }
 
-/* Gráficas */
-/* Estilo moderno para las gráficas */
 .chart-box {
   background: linear-gradient(145deg, #1c1f26, #121317);
   padding: 1rem;
@@ -344,20 +323,17 @@ header {
   margin-bottom: 1rem;
 }
 
-/* Ajustamos la cuadricula para forzar un diseño 2x2 en pantallas amplias */
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
 }
 
-/* Aseguramos que los canvas mantengan un fondo transparente para ver el degradado del contenedor */
 canvas {
   background: transparent;
 }
 
 
-/* Tabla de monitoreo */
 .table-grid {
   background: rgba(0, 0, 0, 0.6);
   padding: 1.5rem;
@@ -382,7 +358,6 @@ canvas {
   color: #01b455;
 }
 
-/* Footer centrado */
 footer {
   width: 80%;
   margin: 2rem auto 1rem auto;
@@ -413,11 +388,9 @@ footer p {
   color: #aaa;
 }
 
-/* ============================= */
-/*           MODALES           */
-/* ============================= */
+
 .modal {
-  display: none; /* Oculto por defecto */
+  display: none; 
   position: fixed;
   z-index: 1000;
   left: 0;
@@ -466,7 +439,6 @@ footer p {
   cursor: pointer;
 }
 
-/* Configuración de Sensores (Modal) */
 .sensor-grid-config {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -499,14 +471,13 @@ footer p {
   color: #01b455;
 }
 
-/* Modal de Emergencia */
 .emergency-modal {
   background: #0a100b;
   padding: 2rem;
   border-radius: 10px;
   max-width: 500px;
   width: 90%;
-  margin: 10% auto; /* Esto centra verticalmente con un margen en la parte superior */
+  margin: 10% auto; 
   text-align: center;
   position: relative;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);

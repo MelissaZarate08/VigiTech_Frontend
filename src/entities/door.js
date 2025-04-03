@@ -1,4 +1,3 @@
-// src/entities/door.js
 export class DoorSensor {
     constructor({ id, timestamp, is_open }) {
       this.id = id;

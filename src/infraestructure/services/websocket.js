@@ -1,8 +1,8 @@
-let reconnectInterval = 5000; // 5 segundos antes de intentar reconectar
+let reconnectInterval = 5000; 
 let ws;
 
 function connectWebSocket() {
-  ws = new WebSocket("ws://192.168.2.187:9090/ws");
+  ws = new WebSocket("ws://3.222.22.155:9090/ws");
 
   ws.onopen = () => {
     console.log("Conectado al servidor WebSocket");
@@ -13,7 +13,6 @@ function connectWebSocket() {
       const data = JSON.parse(event.data);
       console.log("Datos recibidos del WebSocket:", data);
       
-      // Si no existe 'sensor', intentamos deducirlo a partir de 'id'
       let sensorType = data.sensor;
       if (!sensorType && data.id) {
         if (data.id.toLowerCase().includes('door')) sensorType = 'door';
@@ -27,7 +26,6 @@ function connectWebSocket() {
         return;
       }
       
-      // Verifica si el sensor está activado antes de actualizar la UI
       if (window.sensorsEnabled && window.sensorsEnabled[sensorType] === false) {
         console.log(`Actualización ignorada: sensor ${sensorType} desactivado.`);
         return;
@@ -39,7 +37,6 @@ function connectWebSocket() {
         return;
       }
       
-      // Actualizamos según el sensor deducido
       switch (sensorType) {
         case "door":
           element.textContent = data.is_open ? "Abierta" : "Cerrada";
@@ -72,7 +69,6 @@ function connectWebSocket() {
   };
 }
 
-// Función para enviar mensajes al servidor vía WebSocket
 export function sendWebSocketMessage(payload) {
   if (ws && ws.readyState === WebSocket.OPEN) {
     ws.send(JSON.stringify(payload));
@@ -81,5 +77,4 @@ export function sendWebSocketMessage(payload) {
   }
 }
 
-// Iniciar la conexión
 connectWebSocket();

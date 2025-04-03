@@ -1,4 +1,3 @@
-// src/infraestructure/services/notificationUtil.js
 export function showToast(message, options = {}) {
   Toastify({
     text: message,
