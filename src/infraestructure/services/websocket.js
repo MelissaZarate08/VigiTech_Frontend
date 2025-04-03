@@ -2,7 +2,7 @@ let reconnectInterval = 5000;
 let ws;
 
 function connectWebSocket() {
-  ws = new WebSocket("ws://3.222.22.155:9090/ws");
+  ws = new WebSocket("ws://vigitech-ws.integrador.xyz/ws");
 
   ws.onopen = () => {
     console.log("Conectado al servidor WebSocket");

@@ -8,7 +8,7 @@ export async function handleRegister(name, email, password, role, systemID) {
     const firebaseToken = await getFirebaseToken();
     console.log("Token de Firebase obtenido:", firebaseToken);
 
-    const response = await fetch("http://44.213.186.109:8080/api/register", {
+    const response = await fetch("http://vigitech-auth.integrador.xyz/api/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -41,7 +41,7 @@ async function handleLogin(email, password) {
   try {
     const firebaseToken = await getFirebaseToken();
 
-    const response = await fetch("http://44.213.186.109:8080/api/login", {
+    const response = await fetch("http://vigitech-auth.integrador.xyz/api/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password, firebaseToken }),

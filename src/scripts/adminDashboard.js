@@ -1,7 +1,7 @@
 async function fetchUsers() {
   const token = localStorage.getItem("vigitechToken");
   try {
-    const response = await fetch("http://44.213.186.109:8080/api/users", {
+    const response = await fetch("http://vigitech-auth.integrador.xyz/api/users", {
       headers: {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${token}`
@@ -54,7 +54,7 @@ function addButtonEvents() {
       const newActive = !currentActive;
       const token = localStorage.getItem("vigitechToken");
       try {
-        const response = await fetch(`http://44.213.186.109:8080/api/users/${id}/status`, {
+        const response = await fetch(`http://vigitech-auth.integrador.xyz/api/users/${id}/status`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",

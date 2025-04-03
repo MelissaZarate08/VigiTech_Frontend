@@ -3,8 +3,8 @@ import { LightSensor } from '../../entities/light.js';
 import { MotionSensor } from '../../entities/motion.js';
 import { SmokeSensor } from '../../entities/smoke.js';
 
-const SENSOR_API_URL = 'http://13.219.0.108:8081/sensor';
-const COMMAND_API_URL = 'http://13.219.0.108:8081/command';
+const SENSOR_API_URL = 'http://vigitech-api.integrador.xyz/sensor';
+const COMMAND_API_URL = 'http://vigitech-api.integrador.xyz/command';
 
 export async function getDoorData() {
   const response = await fetch(`${SENSOR_API_URL}/door`);
